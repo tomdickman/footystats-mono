@@ -1,0 +1,14 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Player {
+  firstName: String
+  id: ID!
+  lastName: String
+}
+
+type Query {
+  player(id: ID!): Player!
+  players: [Player!]!
+}
