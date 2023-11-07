@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { Player } from './models/player.model';
+import { Player } from './models/player.model'
 
 const players: Player[] = [
   {
