@@ -1,6 +1,8 @@
 {
   "name": "docs",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "description": "Docs site for AFL footy stats site",
+  "author": "Tom Dickman",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3001",

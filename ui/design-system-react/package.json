@@ -4,6 +4,8 @@
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
+  "description": "React design system for footy stats site",
+  "author": "Tom Dickman",
   "scripts": {
     "lint": "eslint .",
     "generate:component": "turbo gen react-component"

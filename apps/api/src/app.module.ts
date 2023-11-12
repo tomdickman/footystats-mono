@@ -5,7 +5,6 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { join } from 'path'
 import { PlayersModule } from './players/players.module'
 
-
 @Module({
   imports: [
     PlayersModule,
@@ -15,7 +14,7 @@ import { PlayersModule } from './players/players.module'
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: true,
       sortSchema: true,
-    })
+    }),
   ],
 })
 export class AppModule {}

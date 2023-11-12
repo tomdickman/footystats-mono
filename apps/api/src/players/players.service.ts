@@ -16,7 +16,7 @@ const players: Player[] = [
 @Injectable()
 export class PlayersService {
   async findOneById(id: string): Promise<Player> {
-    const player = players.find(player => player.id === id)
+    const player = players.find((player) => player.id === id)
 
     if (!player) {
       throw new Error(`No player with id ${id}`)

@@ -19,7 +19,7 @@ describe('Players Resolver', () => {
               },
             ]),
             findOneById: jest.fn<Player, [string]>((id) => ({
-              id
+              id,
             })),
           }),
         },

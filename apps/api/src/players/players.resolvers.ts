@@ -5,9 +5,7 @@ import { PlayersService } from './players.service'
 
 @Resolver(() => Player)
 export class PlayersResolver {
-  constructor(
-    private playersService: PlayersService,
-  ) {}
+  constructor(private playersService: PlayersService) {}
 
   @Query(() => [Player])
   players() {
