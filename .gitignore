@@ -13,6 +13,9 @@ coverage
 out/
 build
 
+# nestjs
+dist/
+
 # misc
 .DS_Store
 *.pem
