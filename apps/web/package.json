@@ -1,7 +1,9 @@
 {
   "name": "web",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
+  "description": "NextJS site for viewing AFL football stats",
+  "author": "Tom Dickman",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,6 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "database": "workspace:*",
     "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

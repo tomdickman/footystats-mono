@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model player {
+  id         String       @id @db.VarChar(100)
+  givenname  String?      @db.VarChar(255)
+  familyname String?      @db.VarChar(255)
+  birthdate  DateTime?    @db.Timestamptz(6)
+  roundstats roundstats[]
+}
+
+model roundstats {
+  playerid               String  @db.VarChar(100)
+  game                   Int
+  team                   String? @db.VarChar(100)
+  opponent               String? @db.VarChar(255)
+  roundnumber            String? @db.VarChar(10)
+  year                   Int?
+  result                 String? @db.VarChar(10)
+  jumpernumber           Int?
+  kicks                  Int?
+  marks                  Int?
+  handballs              Int?
+  disposals              Int?
+  goals                  Int?
+  behinds                Int?
+  hitouts                Int?
+  tackles                Int?
+  rebound50s             Int?
+  inside50s              Int?
+  clearances             Int?
+  clangers               Int?
+  freekicksfor           Int?
+  freekicksagainst       Int?
+  brownlowvotes          Int?
+  contestedpossessions   Int?
+  uncontestedpossessions Int?
+  contestedmarks         Int?
+  marksinside50          Int?
+  onepercenters          Int?
+  bounces                Int?
+  goalassists            Int?
+  timeongroundpercentage Int?
+  fantasypoints          Int?
+  player                 player  @relation(fields: [playerid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([playerid, game])
+}

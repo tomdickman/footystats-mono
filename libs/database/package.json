@@ -1,0 +1,23 @@
+{
+  "name": "database",
+  "version": "0.0.1",
+  "description": "Database connection for accessing footy stats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tom Dickman",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "@types/node": "^20.9.0",
+    "prisma": "^5.5.2",
+    "ts-node": "^10.9.1",
+    "tsconfig": "workspace:*",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@prisma/client": "5.5.2"
+  }
+}
