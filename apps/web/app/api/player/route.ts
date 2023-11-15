@@ -1,12 +1,16 @@
 import { prisma } from 'database'
 import { type NextRequest, NextResponse } from 'next/server'
+import { EN } from './lang'
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
   const searchParams = req.nextUrl.searchParams
   const id = searchParams.get('id')
 
   if (!id) {
-    throw new Error('No ID provided')
+    return NextResponse.json(
+      { error: EN.ERROR.MISSING_PLAYER_ID },
+      { status: 400 },
+    )
   }
 
   try {
@@ -17,11 +21,17 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     })
 
     if (!data) {
-      throw new Error('No data')
+      return NextResponse.json(
+        { error: EN.ERROR.NO_PLAYER_DATA_FOUND },
+        { status: 404 },
+      )
     }
 
     return NextResponse.json(data)
   } catch (error) {
-    throw new Error(`Unable to fetch player ID: ${id}`, { cause: error })
+    return NextResponse.json(
+      { error: EN.ERROR.NO_PLAYER_DATA_FOUND },
+      { status: 404 },
+    )
   }
 }
