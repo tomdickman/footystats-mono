@@ -30,8 +30,8 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     return NextResponse.json(data)
   } catch (error) {
     return NextResponse.json(
-      { error: EN.ERROR.NO_PLAYER_DATA_FOUND },
-      { status: 404 },
+      { error: EN.ERROR.UNABLE_TO_FETCH_PLAYER_DATA },
+      { status: 400 },
     )
   }
 }
