@@ -11,7 +11,7 @@ interface PlayerPageProps {
 
 async function getPlayer(id: string): Promise<Player | undefined> {
   // TODO: Capture errors.
-  const res = await fetch(`${process.env.VERCEL_URL}/api/player?id=${id}`)
+  const res = await fetch(`https://${process.env.VERCEL_URL}/api/player?id=${id}`)
 
   if (!res.ok) {
     return
