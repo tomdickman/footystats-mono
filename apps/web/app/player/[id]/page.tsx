@@ -13,6 +13,9 @@ async function getPlayer(id: string): Promise<Player | undefined> {
   // TODO: Capture errors.
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/player?id=${id}`)
 
+  // eslint-disable-next-line no-console -- Debugging.
+  console.log(res)
+
   if (!res.ok) {
     return
   }
