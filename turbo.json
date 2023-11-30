@@ -7,7 +7,7 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "web#build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["database#build", "^build"],
       "env": ["VERCEL_URL"]
     },
     "test": {
