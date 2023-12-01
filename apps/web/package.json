@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.5.6",
+    "@prisma/nextjs-monorepo-workaround-plugin": "^5.6.0",
     "@types/node": "^17.0.45",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
