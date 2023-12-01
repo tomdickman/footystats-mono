@@ -1,4 +1,4 @@
-import { type Player } from 'database'
+import { prisma, type Player } from 'database'
 import { notFound } from 'next/navigation'
 
 interface PlayerPageParams {
@@ -11,17 +11,18 @@ interface PlayerPageProps {
 
 async function getPlayer(id: string): Promise<Player | undefined> {
   // TODO: Capture errors.
-  const res = await fetch(`https://${process.env.VERCEL_URL}/api/player?id=${id}`)
+  const player = await prisma.player.findUnique({
+    where: {
+      id,
+    },
+  })
 
-  // eslint-disable-next-line no-console -- Debugging.
-  console.log(res)
-
-  if (!res.ok) {
+  if (!player) {
     return
   }
 
   // TODO: Validate data.
-  return res.json() as unknown as Player
+  return player
 }
 
 export default async function PlayerPage({
