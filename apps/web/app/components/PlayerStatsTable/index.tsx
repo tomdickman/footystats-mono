@@ -1,18 +1,19 @@
 import { prisma } from 'database'
+import { use } from 'react'
 
 interface PlayerStatsTableProps {
   id: string
 }
 
-export async function PlayerStatsTable({ id }: PlayerStatsTableProps): Promise<JSX.Element> {
-  const roundStats = await prisma.roundstats.findMany({
+export function PlayerStatsTable({ id }: PlayerStatsTableProps): JSX.Element {
+  const roundStats = use(prisma.roundstats.findMany({
     where: {
       playerid: id,
     },
     orderBy: {
       game: 'asc',
     }
-  })
+  }))
 
   return (
     <table>
