@@ -32,18 +32,20 @@ export default async function PlayerPage({
 }: PlayerPageProps): Promise<JSX.Element> {
   const player = await getPlayer(id)
 
-  if (!player?.id) {
+  if (!player?.id || !player.givenname || !player.familyname || !player.birthdate) {
     notFound()
   }
 
+  const date = new Date(player.birthdate)
+
   return(
     <>
-      <h1>{player.givenname} {player.familyname}</h1>
-      {player.birthdate ? (
-        <p>DOB: {new Date(player.birthdate).toUTCString()}</p>
-      ) : null}
+      <h1 className='text-3xl'>{player.givenname} {player.familyname}</h1>
+      <p>DOB: {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</p>
       <Suspense fallback={<div>Loading...</div>}>
-        <PlayerStatsTable id={player.id} />
+        <div className='overflow-y-scroll' style={{ height: '80dvh' }}>
+          <PlayerStatsTable id={player.id} />
+        </div>
       </Suspense>
     </>
   )

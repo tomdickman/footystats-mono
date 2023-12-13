@@ -16,7 +16,19 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} bg-white dark:bg-zinc-900 text-black dark:text-white flex flex-col h-screen`}>
+        <header className='container'>
+          <meta charSet='utf-8' />
+        </header>
+        <main className='container mx-auto'>
+          {children}
+        </main>
+        <footer className='container mt-auto'>
+          <p className='text-center text-sm py-3'>
+            Powered by Tom Dickman
+          </p>
+        </footer>
+      </body>
     </html>
   )
 }
