@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call  -- Response.json takes data as any */
-import type { NextApiResponse } from 'next'
 import { auth } from '@/auth'
 
 export const GET = auth((req): Response => {
@@ -12,4 +11,4 @@ export const GET = auth((req): Response => {
   }
 
   return Response.json({ message })
-}) as unknown as () => NextApiResponse
+}) as unknown as () => Response
