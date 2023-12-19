@@ -19,7 +19,7 @@ function Protected(): JSX.Element {
         </p>
         <code>{message}</code>
         <p>
-          <a href='/api/auth/logout'>Logout</a>
+          <a href='/api/auth/signout'>Logout</a>
         </p>
       </div>
     </div>

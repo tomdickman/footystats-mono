@@ -1,7 +1,6 @@
 import { prisma, type Player } from 'database'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
-import { useUser } from '@auth0/nextjs-auth0/client'
 import { PlayerStatsTable } from '../../components/PlayerStatsTable'
 
 interface PlayerPageParams {
@@ -31,19 +30,6 @@ async function getPlayer(id: string): Promise<Player | undefined> {
 export default async function PlayerPage({
   params: { id },
 }: PlayerPageProps): Promise<JSX.Element> {
-  const { user, error, isLoading } = useUser()
-
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>{error.message}</div>
-
-  if (!user) {
-    return (
-      <div>
-        <p>Please sign in to view this page.</p>
-      </div>
-    )
-  }
-  
   const player = await getPlayer(id)
 
   if (!player?.id || !player.givenname || !player.familyname || !player.birthdate) {

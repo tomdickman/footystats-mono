@@ -1,12 +1,14 @@
-import { withApiAuthRequired } from "@auth0/nextjs-auth0"
-import { NextResponse } from "next/server"
+/* eslint-disable @typescript-eslint/no-unsafe-call  -- Response.json takes data as any */
+import { auth } from '@/auth'
 
-const GET = withApiAuthRequired(() => {
+export const GET = auth((req): Response => {
+  if (!req.auth) {
+    return Response.json({ message: "Not authenticated" }, { status: 401 })
+  }
+
   const message = {
     text: "This is a protected message.",
   }
 
-  return NextResponse.json(message)
+  return Response.json({ message })
 })
-
-export { GET }

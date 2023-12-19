@@ -1,7 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { UserProvider } from '@auth0/nextjs-auth0/client'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +15,6 @@ export default function RootLayout({
   children: React.ReactNode
 }): JSX.Element {
   return (
-    <UserProvider>
       <html lang="en">
         <body className={`${inter.className} bg-white dark:bg-zinc-900 text-black dark:text-white flex flex-col h-screen`}>
           <header className='container'>
@@ -32,6 +30,5 @@ export default function RootLayout({
           </footer>
         </body>
       </html>
-    </UserProvider>
   )
 }

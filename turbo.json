@@ -8,7 +8,13 @@
     },
     "web#build": {
       "dependsOn": ["database#build", "^build"],
-      "env": ["VERCEL_URL"]
+      "env": [
+        "AUTH_AUTH0_CLIENT_ID",
+        "AUTH_AUTH0_CLIENT_SECRET",
+        "AUTH_AUTH0_ISSUER",
+        "AUTH_SECRET",
+        "AUTH_URL"
+      ]
     },
     "test": {
       "dependsOn": ["build"]
