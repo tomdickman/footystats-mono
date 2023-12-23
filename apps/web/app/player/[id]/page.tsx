@@ -1,6 +1,7 @@
 import { prisma, type Player } from 'database'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+import { auth } from '@/auth'
 import { PlayerStatsTable } from '../../components/PlayerStatsTable'
 
 interface PlayerPageParams {
@@ -12,7 +13,6 @@ interface PlayerPageProps {
 }
 
 async function getPlayer(id: string): Promise<Player | undefined> {
-  // TODO: Capture errors.
   const player = await prisma.player.findUnique({
     where: {
       id,
@@ -23,16 +23,16 @@ async function getPlayer(id: string): Promise<Player | undefined> {
     return
   }
 
-  // TODO: Validate data.
   return player
 }
 
 export default async function PlayerPage({
   params: { id },
 }: PlayerPageProps): Promise<JSX.Element> {
+  const session = await auth()
   const player = await getPlayer(id)
 
-  if (!player?.id || !player.givenname || !player.familyname || !player.birthdate) {
+  if (!player) {
     notFound()
   }
 
@@ -43,11 +43,13 @@ export default async function PlayerPage({
       <h1 className='text-3xl'>{player.givenname} {player.familyname}</h1>
       <p>DOB: {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</p>
       <div className='py-5'>
-        <Suspense fallback={<div>Loading...</div>}>
+        {session ? (
+          <Suspense fallback={<div>Loading...</div>}>
           <div className='overflow-y-scroll' style={{ height: '80dvh' }}>
             <PlayerStatsTable id={player.id} />
           </div>
         </Suspense>
+        ) : <p>You must be logged in to view this content</p>}
       </div>
     </>
   )

@@ -10,9 +10,9 @@ datasource db {
 
 model player {
   id         String       @id @db.VarChar(100)
-  givenname  String?      @db.VarChar(255)
-  familyname String?      @db.VarChar(255)
-  birthdate  DateTime?    @db.Timestamptz(6)
+  givenname  String       @db.VarChar(255)
+  familyname String       @db.VarChar(255)
+  birthdate  DateTime     @db.Timestamptz(6)
   roundstats roundstats[]
 }
 
