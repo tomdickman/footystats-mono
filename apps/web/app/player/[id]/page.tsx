@@ -45,7 +45,7 @@ export default async function PlayerPage({
       <div className='py-5'>
         {session ? (
           <Suspense fallback={<div>Loading...</div>}>
-          <div className='overflow-y-scroll' style={{ height: '80dvh' }}>
+          <div className='overflow-y-scroll' style={{ maxHeight: '70dvh' }}>
             <PlayerStatsTable id={player.id} />
           </div>
         </Suspense>

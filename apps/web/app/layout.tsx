@@ -1,6 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,18 +18,16 @@ export default function RootLayout({
 }): JSX.Element {
   return (
       <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta content="initial-scale=1.0, width=device-width" name="viewport" />
+        </head>
         <body className={`${inter.className} bg-white dark:bg-zinc-900 text-black dark:text-white flex flex-col h-screen`}>
-          <header className='container'>
-            <meta charSet='utf-8' />
-          </header>
+          <Header />
           <main className='container mx-auto'>
             {children}
           </main>
-          <footer className='container mt-auto'>
-            <p className='text-center text-sm py-3'>
-              Powered by Tom Dickman
-            </p>
-          </footer>
+          <Footer />
         </body>
       </html>
   )
