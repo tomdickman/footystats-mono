@@ -28,7 +28,7 @@ async function Page(): Promise<JSX.Element> {
           players.map((player: Player) => {
             return (
               <div key={player.id}>
-                <a className='hover:underline' href={`/player/${player.id}`}>{player.familyname}, {player.givenname}</a>
+                <a className='hover:underline hover:text-blue-600 dark:hover:text-blue-400' href={`/player/${player.id}`}>{player.familyname}, {player.givenname}</a>
               </div>
             )
           })
