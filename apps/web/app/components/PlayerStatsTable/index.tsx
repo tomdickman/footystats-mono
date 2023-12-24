@@ -11,7 +11,7 @@ export function PlayerStatsTable({ id }: PlayerStatsTableProps): JSX.Element {
       playerid: id,
     },
     orderBy: {
-      game: 'asc',
+      game: 'desc',
     }
   }))
 
@@ -37,7 +37,9 @@ export function PlayerStatsTable({ id }: PlayerStatsTableProps): JSX.Element {
         {roundStats.map((stats) => (
           <tr className='border-black dark:border-gray-400 border-solid border-2' key={stats.game}>
             <td className='px-2 py-1 text-left'>{stats.game}</td>
-            <td className='px-2 py-1 text-left text-ellipsis whitespace-nowrap'>{stats.opponent}</td>
+            <td className='px-2 py-1 text-left whitespace-nowrap' title={stats.opponent || undefined}>
+              <div className='max-w-[7em] text-ellipsis overflow-hidden'>{stats.opponent}</div>
+            </td>
             <td className='px-2 py-1 text-center'>{stats.roundnumber}</td>
             <td className='px-2 py-1 text-center'>{stats.year}</td>
             <td className='px-2 py-1 text-right'>{stats.handballs}</td>

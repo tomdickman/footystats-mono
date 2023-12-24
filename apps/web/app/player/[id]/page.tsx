@@ -39,7 +39,7 @@ export default async function PlayerPage({
   const date = new Date(player.birthdate)
 
   return(
-    <>
+    <div className='p-5'>
       <h1 className='text-3xl'>{player.givenname} {player.familyname}</h1>
       <p>DOB: {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</p>
       <div className='py-5'>
@@ -51,6 +51,6 @@ export default async function PlayerPage({
         </Suspense>
         ) : <p>You must be logged in to view this content</p>}
       </div>
-    </>
+    </div>
   )
 }
