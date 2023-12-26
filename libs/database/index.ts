@@ -1,2 +1,2 @@
 export { prisma } from './database'
-export { type player as Player } from '@prisma/client'
+export { type player as Player, type roundstats as RoundStats } from '@prisma/client'
