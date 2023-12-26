@@ -12,18 +12,18 @@ export function Table({
   roundStats
 }: { roundStats: RoundStats[] }): JSX.Element {
   const colDefs = useMemo<ColDef[]>(() => [
-    { field: 'game', headerName: 'Game' },
-    { field: 'opponent', headerName: 'Opponent' },
-    { field: 'roundnumber', headerName: 'Round' },
-    { field: 'year', headerName: 'Year' },
-    { field: 'handballs', headerName: 'HB' },
-    { field: 'kicks', headerName: 'K' },
-    { field: 'tackles', headerName: 'T' },
-    { field: 'freekicksagainst', headerName: 'FA' },
-    { field: 'freekicksfor', headerName: 'FF' },
-    { field: 'goals', headerName: 'G' },
-    { field: 'behinds', headerName: 'B' },
-    { field: 'fantasypoints', headerName: 'Pts' },
+    { field: 'game', headerName: 'Game', headerTooltip: 'Career Game Number' },
+    { field: 'opponent', headerName: 'Opponent', headerTooltip: 'Opponent' },
+    { field: 'roundnumber', headerName: 'Round', headerTooltip: 'Season Round Number' },
+    { field: 'year', headerName: 'Year', headerTooltip: 'Year' },
+    { field: 'handballs', headerName: 'HB', headerTooltip: 'Handballs' },
+    { field: 'kicks', headerName: 'K', headerTooltip: 'Kicks' },
+    { field: 'tackles', headerName: 'T', headerTooltip: 'Tackles' },
+    { field: 'freekicksagainst', headerName: 'FA', headerTooltip: 'Free Kicks Against' },
+    { field: 'freekicksfor', headerName: 'FF', headerTooltip: 'Free Kicks For' },
+    { field: 'goals', headerName: 'G', headerTooltip: 'Goals' },
+    { field: 'behinds', headerName: 'B', headerTooltip: 'Behinds' },
+    { field: 'fantasypoints', headerName: 'Pts', headerTooltip: 'Fantasy Points' },
   ], [])
 
   const gridOptions = useMemo<GridOptions>(() => ({
