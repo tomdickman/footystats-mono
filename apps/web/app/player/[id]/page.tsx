@@ -40,7 +40,7 @@ export default async function PlayerPage({
 
   return(
     <div className='p-5'>
-      <h1 className='text-3xl'>{player.givenname} {player.familyname}</h1>
+      <h1 className='text-3xl'>{player.givenname} {player.familyname.replace(/_/g, "'")}</h1>
       <p>DOB: {date.getDate()}/{date.getMonth() + 1}/{date.getFullYear()}</p>
       <div className='py-5'>
         {session ? (

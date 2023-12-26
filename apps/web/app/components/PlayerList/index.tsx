@@ -37,7 +37,7 @@ export function PlayerList({
           />
         </form>
       </div>
-      <div className='flex flex-col items-center overflow-y-auto w-full' style={{ maxHeight: '40dvh' }}>
+      <div className='flex flex-col items-center overflow-y-auto w-full'>
         {filteredPlayers.length ? (
           filteredPlayers.map((player: Player) => {
             return (
