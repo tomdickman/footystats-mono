@@ -29,6 +29,7 @@ export function Table({
   const gridOptions = useMemo<GridOptions>(() => ({
     autoSizeStrategy: {
       type: 'fitGridWidth',
+      defaultMinWidth: 75
     }
   }), [])
 
