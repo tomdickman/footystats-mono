@@ -3,7 +3,7 @@
 import type { GridOptions, ColDef } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react'
 import { type RoundStats } from 'database'
-import { useMemo, useState } from 'react'
+import { ChangeEventHandler, useMemo, useState } from 'react'
 
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-alpine.css'
@@ -89,24 +89,33 @@ export function Table({
     }
   }), [])
 
+  const handleYearSelect: ChangeEventHandler<HTMLSelectElement> = (event): void => {
+    const selectedYear = event.currentTarget.value
+    if (selectedYear === 'all') {
+      setFilteredRoundStats(roundStats)
+    } else {
+      setFilteredRoundStats(roundStats.filter((roundStat) => roundStat.year.toString() === selectedYear))
+    }
+  }
+
   return (
     <>
       <div className='container py-2'>
-        <select className='border-2 border-solid border-black dark:border-zinc-100/10 rounded-lg p-2 w-100 text-black' onChange={(event) => {
-          const selectedYear = event.currentTarget.value
-          if (selectedYear === 'all') {
-            setFilteredRoundStats(roundStats)
-          } else {
-            setFilteredRoundStats(roundStats.filter((roundStat) => roundStat.year.toString() === selectedYear))
-          }
-        } }>
-          <option key='all' value='all'>All Years</option>
-          {Array.from(new Set(roundStats.map((roundStat) => roundStat.year))).map((year) => {
-            return (
-              <option key={year} value={year}>{year}</option>
-            )
-          })}
-        </select>
+        <form>
+          <label className='sr-only' htmlFor='year'>Select a year</label>
+          <select
+            className='border-2 border-solid border-black dark:border-zinc-100/10 rounded-lg p-2 w-100 text-black'
+            id='year'
+            onChange={handleYearSelect}
+          >
+            <option key='all' value='all'>All Years</option>
+            {Array.from(new Set(roundStats.map((roundStat) => roundStat.year))).map((year) => {
+              return (
+                <option key={year} value={year}>{year}</option>
+              )
+            })}
+          </select>
+        </form>
       </div>
       <div className='ag-theme-alpine-auto-dark' style={{ height: '60dvh' }}>
         <AgGridReact columnDefs={colDefs} gridOptions={gridOptions} rowData={filteredRoundStats} />
