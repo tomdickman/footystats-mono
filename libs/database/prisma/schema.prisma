@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native"]
 }
 
@@ -17,39 +17,80 @@ model player {
 }
 
 model roundstats {
-  playerid               String  @db.VarChar(100)
-  game                   Int
-  team                   String @db.VarChar(100)
-  opponent               String @db.VarChar(255)
-  roundnumber            String @db.VarChar(10)
-  year                   Int
-  result                 String? @db.VarChar(10)
-  jumpernumber           Int
-  kicks                  Int
-  marks                  Int
-  handballs              Int
-  disposals              Int
-  goals                  Int
-  behinds                Int
-  hitouts                Int
-  tackles                Int
-  rebound50s             Int
-  inside50s              Int
-  clearances             Int
-  clangers               Int
-  freekicksfor           Int
-  freekicksagainst       Int
-  brownlowvotes          Int
-  contestedpossessions   Int
-  uncontestedpossessions Int
-  contestedmarks         Int
-  marksinside50          Int
-  onepercenters          Int
-  bounces                Int
-  goalassists            Int
-  timeongroundpercentage Int
-  fantasypoints          Int
-  player                 player  @relation(fields: [playerid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  playerid                       String  @db.VarChar(100)
+  game                           Int
+  team                           String  @db.VarChar(50)
+  opponent                       String  @db.VarChar(50)
+  roundnumber                    String  @db.VarChar(10)
+  year                           Int
+  result                         String  @db.VarChar(10)
+  jumpernumber                   Int
+  kicks                          Int
+  marks                          Int
+  handballs                      Int
+  disposals                      Int
+  goals                          Int
+  behinds                        Int
+  hitouts                        Int
+  tackles                        Int
+  rebound50s                     Int
+  inside50s                      Int
+  clearances                     Int
+  clangers                       Int
+  freekicksfor                   Int
+  freekicksagainst               Int
+  brownlowvotes                  Int
+  contestedpossessions           Int
+  uncontestedpossessions         Int
+  contestedmarks                 Int
+  marksinside50                  Int
+  onepercenters                  Int
+  bounces                        Int
+  goalassists                    Int
+  timeongroundpercentage         Int
+  fantasypoints                  Int
+  matchid                        String? @db.VarChar(50)
+  team_roundstats_opponentToteam team    @relation("roundstats_opponentToteam", fields: [opponent], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  player                         player  @relation(fields: [playerid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  team_roundstats_teamToteam     team    @relation("roundstats_teamToteam", fields: [team], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([playerid, game])
+}
+
+model team {
+  id                                   String       @id @db.VarChar(50)
+  club                                 String       @unique @db.VarChar(100)
+  mascot                               String       @unique @db.VarChar(100)
+  match_match_awayteamToteam           match[]      @relation("match_awayteamToteam")
+  match_match_hometeamToteam           match[]      @relation("match_hometeamToteam")
+  roundstats_roundstats_opponentToteam roundstats[] @relation("roundstats_opponentToteam")
+  roundstats_roundstats_teamToteam     roundstats[] @relation("roundstats_teamToteam")
+}
+
+model venue {
+  id                       String  @id @db.VarChar(100)
+  name                     String  @unique @db.VarChar(255)
+  city                     String  @db.VarChar(255)
+  state                    String  @db.VarChar(255)
+  country                  String  @db.VarChar(255)
+  latitude                 Float
+  longitude                Float
+  match_match_venueTovenue match[] @relation("match_venueTovenue")
+}
+
+model match {
+  id                        String   @id @db.VarChar(50)
+  venue                     String   @db.VarChar(100)
+  year                      Int
+  roundnumber               String   @db.VarChar(10)
+  hometeam                  String   @db.VarChar(50)
+  awayteam                  String   @db.VarChar(50)
+  matchdate                 DateTime @db.Timestamptz(6)
+  homegoals                 Int
+  homebehinds               Int
+  awaygoals                 Int
+  awaybehinds               Int
+  team_match_awayteamToteam team     @relation("match_awayteamToteam", fields: [awayteam], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  team_match_hometeamToteam team     @relation("match_hometeamToteam", fields: [hometeam], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  venue_match_venueTovenue  venue    @relation("match_venueTovenue", fields: [venue], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
